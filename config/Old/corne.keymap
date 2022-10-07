@@ -1,0 +1,57 @@
+/*
+ * Copyright (c) 2020 The ZMK Contributors
+ *
+ * SPDX-License-Identifier: MIT
+ */
+
+#include <behaviors.dtsi>
+#include <dt-bindings/zmk/keys.h>
+#include <dt-bindings/zmk/bt.h>
+#include <dt-bindings/zmk/reset.h>
+
+#define BASE 0
+#define LOWER 1
+#define RAISE 2
+#define CONFIG 3
+
+/ {
+  behaviors {
+    hm: homerow_mods {
+      compatible = "zmk,behavior-hold-tap";
+      label = "HOMEROW_MODS";
+      #binding-cells = <2>;
+      tapping-term-ms = <250>;
+      quick_tap_ms = <0>;
+      flavor = "tap-preferred";
+      bindings = <&kp>, <&kp>;
+    };
+  };
+  keymap {
+    compatible = "zmk,keymap";
+
+    Base_layer {
+      bindings = <
+        &kp ESCAPE &kp Q &kp W &kp E &kp R &kp T &kp Y &kp U &kp I &kp O &kp P &kp BACKSPACE &kp undefined &kp A &kp S &kp D &lt LOWER F &kp G &kp H &kp J &kp K &kp L &kp SEMICOLON &hm LCTRL SINGLE_QUOTE &hm LSHFT NON_US_BACKSLASH &kp Z &kp X &kp C &kp V &kp B &kp N &kp M &kp COMMA &kp PERIOD &kp SLASH &hm LSHFT NON_US_HASH &hm RGUI DEL &hm LALT BACKSPACE &kp SPACE &kp RETURN &lt RAISE TAB &kp RIGHT_ALT 
+      >;
+    };
+
+    Lower_layer {
+      bindings = <
+        &kp TAB &kp F1 &kp F2 &kp F3 &kp F4 &kp F5 &kp F6 &kp F7 &kp F8 &kp F9 &kp F10 &kp F11 &kp CAPSLOCK &kp SCROLLLOCK &kp PAUSE_BREAK &none &trans &none &kp LEFT_ARROW &kp DOWN_ARROW &kp UP_ARROW &kp RIGHT_ARROW &none &kp F12 &none &none &none &none &none &none &none &kp PRINTSCREEN &none &none &none &none &hm LGUI DEL &hm LALT BACKSPACE &kp RETURN &kp SPACE &lt CONFIG TAB &kp RIGHT_ALT 
+      >;
+    };
+
+    Raise_layer {
+      bindings = <
+        &kp EQUAL &kp NUMBER_1 &kp NUMBER_2 &kp NUMBER_3 &kp NUMBER_4 &kp NUMBER_5 &kp NUMBER_6 &kp NUMBER_7 &kp NUMBER_8 &kp NUMBER_9 &kp NUMBER_0 &kp MINUS &kp LEFT_CONTROL &kp LEFT_PARENTHESIS &kp RIGHT_PARENTHESIS &kp LEFT_BRACKET &kp RIGHT_BRACKET &kp HOME &kp PG_UP &kp NUMBER_4 &kp NUMBER_5 &kp NUMBER_6 &kp KP_PLUS &kp RIGHT_CONTROL &hm LSHFT NON_US_BACKSLASH &none &kp INSERT &kp LT &kp GT &kp END &kp PG_DN &kp NUMBER_1 &kp NUMBER_2 &kp NUMBER_3 &kp KP_DOT &kp RIGHT_SHIFT &hm LGUI DEL &hm LALT BACKSPACE &kp SPACE &kp RETURN &trans &hm RALT NUMBER_0 
+      >;
+    };
+
+    Config_layer {
+      bindings = <
+        &none &none &none &none &none &none &none &bt BT_SEL 4 &bt BT_SEL 5 &none &none &reset &none &none &none &none &trans &none &none &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &none &bootloader &none &none &none &none &none &none &bt BT_CLR &bt BT_NXT &bt BT_PRV &none &none &none &none &none &kp SPACE &kp RETURN &trans &none 
+      >;
+    };
+
+  };
+};
